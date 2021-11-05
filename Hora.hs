@@ -1,7 +1,5 @@
 module Hora
   ( Hora,
-    getHoras,
-    getMinutos,
     toMinutes,
     fromMinutes,
     subtractHours,
@@ -9,10 +7,7 @@ module Hora
   )
 where
 
-data Hora = Hora
-  { horas :: Int,
-    minutos :: Int
-  }
+data Hora = Hora {horas :: Int, minutos :: Int}
 
 instance Show Hora where
   show (Hora x y)
@@ -25,12 +20,6 @@ instance Show Hora where
 fromStr :: [Char] -> Hora
 fromStr "" = Hora (-1) (-1)
 fromStr n = Hora (read $ takeWhile (/= ':') n :: Int) (read $ reverse $ takeWhile (/= ':') $ reverse n :: Int)
-
-getHoras :: Hora -> Int
-getHoras (Hora x _) = x
-
-getMinutos :: Hora -> Int
-getMinutos (Hora _ x) = x
 
 toMinutes :: Hora -> Int
 toMinutes (Hora (-1) (-1)) = -1
